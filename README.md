@@ -13,13 +13,13 @@
 <hr />
 
 
-LuauHono is a simple and fast Luau web framework for Lune. LuauHono is inspired by [Hono](https://github.com/honojs/hono) and shares a similar API.
+LuauHono is a small, simple and fast web framework for Lune. It is inspired by [Hono](https://github.com/honojs/hono) and shares a similar API.
 
 ```luau
 local app = LuauHono.new()
 
-app:get('/', function(req, res)
-	return res:text('LuauHono!')
+app:get('/', function(c)
+	return c:text('LuauHono!')
 end)
 
 app:serve()
