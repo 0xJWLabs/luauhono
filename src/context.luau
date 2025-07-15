@@ -23,7 +23,7 @@ export type Context = typeof(setmetatable({} :: ContextProperties, Context))
 function Context.new(req: net.ServeRequest, notFoundHandler: (Context) -> net.ServeResponse)
 	return setmetatable({
 		rawRequest = req,
-		request = Request.new(req),
+		req = Request.new(req),
 		res = {
 			headers = {},
 		} :: net.ServeResponse,
