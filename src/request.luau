@@ -9,7 +9,7 @@ export type RequestParamaters = {
 	query: { [string]: string }?,
 	method: RequestMethod,
 	headers: { [string]: string },
-	cachedBody: string,
+	body: string,
 	params: { [string]: string },
 	validatedData: { [string]: any },
 	json: (self: Request) -> any,
@@ -18,7 +18,7 @@ export type RequestParamaters = {
 export type Request = typeof(setmetatable({} :: RequestParamaters, Request))
 export type RequestMethod = "DELETE" | "GET" | "HEAD" | "OPTIONS" | "PATCH" | "POST" | "PUT"
 
-local function RequestJson(self)
+local function RequestJson(self: Request)
 	return serde.decode("json", self.body)
 end
 
@@ -26,7 +26,7 @@ function Request.new(base: net.ServeRequest)
 	return setmetatable({
 		path = base.path,
 		method = base.method,
-		cachedBody = base.body,
+		body = base.body,
 		query = base.query,
 		headers = base.headers or {},
 		validatedData = {},

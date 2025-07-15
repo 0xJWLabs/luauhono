@@ -1,9 +1,8 @@
 local datetime = require("@lune/datetime")
 local process = require("@lune/process")
-local Types = require("../types")
 local Context = require("../context")
-
 type Context = Context.Context
+local Types = require("@luauhono/types")
 type Middleware = Types.Middleware
 
 local color = if process.env.NO_COLOR then false else true

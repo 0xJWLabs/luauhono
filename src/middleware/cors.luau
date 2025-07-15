@@ -1,16 +1,12 @@
 local net = require("@lune/net")
-
 local Context = require("../context")
-local Request = require("../request")
-local Types = require("../types")
-
-type Middleware = Types.Middleware
-type RequestMethod = Request.RequestMethod
 type Context = Context.Context
+local Types = require("@luauhono/types")
+type Middleware = Types.Middleware
 
 export type Options = {
 	origin: string | { string } | (origin: string) -> string?,
-	methods: { RequestMethod }?,
+	methods: { string }?,
 	allowHeaders: { string }?,
 	exposeHeaders: { string }?,
 	maxAge: number?,
@@ -22,7 +18,7 @@ local defaultOptions: Options = {
 	methods = { "GET", "HEAD", "PUT", "PATCH", "POST", "DELETE" },
 }
 
-local function cors(options: Options?)
+local function cors(options: Options?): Middleware
 	local opts = table.clone(options or defaultOptions)
 	if options then
 		opts.origin = options.origin or defaultOptions.origin
@@ -76,8 +72,7 @@ local function cors(options: Options?)
 			return c:status(204):finalize()
 		end
 		next()
-
-		return nil
+		return nil -- TODO: How can we allow returning nothing?
 	end
 end
 

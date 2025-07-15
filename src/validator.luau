@@ -1,10 +1,8 @@
 local net = require("@lune/net")
-
-local Types = require("./types")
-local Context = require("./context")
-
-type Middleware = Types.Middleware
+local Context = require("@luauhono/context")
 type Context = Context.Context
+local Types = require("@luauhono/types")
+type Middleware = Types.Middleware
 
 type ValidationTarget = "json" | "query" | "params" | "headers"
 type ValidationFunction = (value: any) -> (boolean, string?)
@@ -40,7 +38,7 @@ local function validator(target: ValidationTarget | ValidationFunction, validati
 			return c:status(400):text(err or "Invalid request")
 		end
 
-		c.req.validatedData[targ] = value
+		c.req.valid[targ] = value
 
 		next()
 		return nil -- TODO: How can we allow returning nothing?
