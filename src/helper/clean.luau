@@ -1,15 +1,14 @@
---!nonstrict
 type AnyTable = { [any]: any }
 
 local function clean<T>(s: T, visited: { [any]: any }?): T
 	visited = visited or {}
 
-	if visited[s] then
-		return visited[s]
+	if (visited :: AnyTable)[s] then
+		return (visited :: AnyTable)[s]
 	end
 
 	local result: AnyTable = {}
-	visited[s] = result
+	(visited :: AnyTable)[s] = result
 
 	-- Use `next` instead of `pairs` to avoid `__pairs`
 	for key, value in s :: any do
@@ -24,7 +23,7 @@ local function clean<T>(s: T, visited: { [any]: any }?): T
 		end
 	end
 
-	return result :: T
+	return (result :: any) :: T
 end
 
 return clean

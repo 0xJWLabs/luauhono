@@ -1,4 +1,17 @@
-# 🐈 LuauHono
+<div align="center">
+  <a href="https://luauhono.dev">
+    <img src="https://raw.githubusercontent.com/0xjwlabs/luauhono/main/docs/images/luauhono-title.png" width="500" height="auto" alt="LuauHono"/>
+  </a>
+</div>
+
+<hr />
+
+<p align="center">
+<a href="https://luauhono.dev"><b>Documentation 👉 luauhono.dev</b></a><br />
+</p>
+
+<hr />
+
 
 LuauHono is a simple and fast Luau web framework for Lune. LuauHono is inspired by [Hono](https://github.com/honojs/hono) and shares a similar API.
 
