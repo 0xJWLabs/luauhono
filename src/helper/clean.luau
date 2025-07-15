@@ -13,7 +13,7 @@ local function clean<T>(s: T, visited: { [any]: any }?): T
 
 	-- Use `next` instead of `pairs` to avoid `__pairs`
 	for key, value in s :: any do
-		if typeof(value) or typeof(value) == "thread" or type(value) == "userdata" then
+		if typeof(value) == "function" or typeof(value) == "thread" or type(value) == "userdata" then
 			continue
 		end
 
