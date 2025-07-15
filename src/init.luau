@@ -145,7 +145,7 @@ function LuauHono.dispatch(self: LuauHono, request: net.ServeRequest): net.Serve
 
 	if #match == 1 then
 		local handler = match[1].handler
-		req.params = match[1].params or {}
+		context.req.params = match[1].params or {}
 		local success, result = pcall(handler, context, function()
 			return self.notFoundHandler(context) -- If the single handler is a middleware, it must be not found
 		end)
@@ -162,7 +162,7 @@ function LuauHono.dispatch(self: LuauHono, request: net.ServeRequest): net.Serve
 			return self.notFoundHandler(context)
 		end
 
-		req.params = match[i].params or {}
+		context.req.params = match[i].params or {}
 
 		local handler = match[i].handler
 
